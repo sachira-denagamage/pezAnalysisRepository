@@ -7,10 +7,7 @@ function pez3000_statusAssessment_v2(exptIDlist)
 %   experiment IDs found in the analysis directory are assessed.
 
 %% %%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');

@@ -27,10 +27,7 @@ visualizer_name = 'trackingVisualizer3000_v14';
 
 
 %%%%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 set(0,'showhiddenhandles','on')
@@ -40,7 +37,7 @@ analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
 
 failure_path = fullfile(analysisDir,'errorLogs','pezProcessor300_v8auto_errorLog.txt');
 
-listSavePath = fullfile(fileDir,'pez3000_variables\analysisVariables\videoList.mat');
+listSavePath = fullfile(fileDir,'pez3000_variables','analysisVariables','videoList.mat');
 if exist(listSavePath,'file')
     delete(listSavePath)%%%%%% comment out to keep saved list
 end

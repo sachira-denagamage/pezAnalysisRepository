@@ -8,10 +8,7 @@ if ~exist('runMode','var')
     runMode = 1;
 end
 
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
@@ -24,7 +21,7 @@ if runMode == 1
     sheetName = 'allIDs';
     excelPath = fullfile(analysisDir,'experimentIDinfo.xlsx');
 else
-    optionsPath = fullfile(fileDir,'Data_pez3000_analyzed\WRW_graphing_variables\graphOptions.mat');
+    optionsPath = fullfile(fileDir,'Data_pez3000_analyzed','WRW_graphing_variables','graphOptions.mat');
     graphOptions = load(optionsPath);
     graphOptions = graphOptions.graphOptions;
     excelPath = graphOptions.excelPath;

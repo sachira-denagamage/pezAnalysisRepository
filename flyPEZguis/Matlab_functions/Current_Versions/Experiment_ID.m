@@ -24,7 +24,7 @@ classdef Experiment_ID < handle
         all_triggers = [];
         total_counts = [];          %summary of counts
 
-        analysis_path = '\\locker-smb.engram.rc.zi.columbia.edu\card-locker\hhmiData\dm11\cardlab\Data_pez3000_analyzed';
+        analysis_path = '/Volumes/card-locker/hhmiData/dm11/cardlab/Data_pez3000_analyzed';
         %        remove_low = true;
         remove_low = false;
         low_count = 5;

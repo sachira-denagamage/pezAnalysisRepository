@@ -14,14 +14,11 @@ clear all
 % end
 
 % Uncomment next three lines to update last date analyzed
-% load('Z:\hhmiData\dm11\cardlab\Pez3000_Gui_folder\defaults_and_housekeeping_variables\lastDateAssessed_curator.mat')
-% dateFolderStr = '20240210';
-% save('Z:\hhmiData\dm11\cardlab\Pez3000_Gui_folder\defaults_and_housekeeping_variables\lastDateAssessed_curator.mat','dateFolderStr')
+load('/Volumes/card-locker/hhmiData/dm11/cardlab/Pez3000_Gui_folder/defaults_and_housekeeping_variables/lastDateAssessed_curator.mat')
+dateFolderStr = '20251124';
+save('/Volumes/card-locker/hhmiData/dm11/cardlab/Pez3000_Gui_folder/defaults_and_housekeeping_variables/lastDateAssessed_curator.mat','dateFolderStr')
 
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 subfun_dir = fullfile(repositoryDir,'flyPEZanalysis','pezProc_subfunctions');
 saved_var_dir = fullfile(repositoryDir,'flyPEZanalysis','pezProc_saved_variables');
 assessment_dir = fullfile(repositoryDir,'flyPEZanalysis','file_assessment_and_manipulation');
@@ -32,7 +29,7 @@ addpath(fullfile(repositoryDir,'flyPEZanalysis','graphing_and_visualization'))
 disp('Raw data prep')
 pez3000_rawDataPrep
 
-minimum_collectionID = '0242'; %0242
+minimum_collectionID = '0305'; %0242
  
 disp('Takeoff analysis')
 takeoffAnalysis3000_v2(1,[],minimum_collectionID)

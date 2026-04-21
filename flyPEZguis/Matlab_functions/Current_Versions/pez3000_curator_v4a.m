@@ -23,10 +23,10 @@ assessmentTag = '_rawDataAssessment.mat';
 % great near the end of the portion tracked).
 
 %%%%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
+[~,localUserName] = system('echo "$USER"');
 localUserName = localUserName(1:end-1);
 repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = fullfile('/Users',localUserName,'Desktop/Code',repositoryName);
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 guiVarDir = fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables');

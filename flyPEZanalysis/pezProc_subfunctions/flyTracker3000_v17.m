@@ -19,10 +19,7 @@ runID = [strParts{1} '_' strParts{2} '_' strParts{3}];
 exptID = strParts{4}(5:end);
 
 %%%% Establish data destination directory
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');

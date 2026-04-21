@@ -4,10 +4,7 @@ function pez3000_rawDataPrep
 %   variables needed for curation and analysis
 
 %%%%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 parentDir = fullfile(fileDir,'Data_pez3000');
 housekeepingDir = fullfile(fileDir,'Pez3000_Gui_folder','defaults_and_housekeeping_variables');
@@ -70,10 +67,7 @@ end
 
 function makeDataVars(runName,datePath)
 %% %%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
@@ -780,10 +774,7 @@ end
 end
 
 function photoStimStruct = photoactivationAnalyzer(photoStimStruct,exptID)
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 savedPhotostimDir = fullfile(fileDir,'pez3000_variables','photoactivation_stimuli');

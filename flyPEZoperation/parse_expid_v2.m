@@ -8,13 +8,12 @@ function expt_id_info = parse_expid_v2(experiment_id)
     end
 
 %%%%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
+[~,localUserName] = system('echo "$USER"');
 localUserName = localUserName(1:end-1);
 repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = fullfile('/Users',localUserName,'Desktop/Code',repositoryName);
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 file_dir = fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables');
-
 
     Collection = load([file_dir filesep 'Saved_Collection.mat']);
     Genotypes  = load([file_dir filesep 'Saved_Genotypes.mat']);

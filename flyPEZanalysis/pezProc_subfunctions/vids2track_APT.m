@@ -1,9 +1,6 @@
 function vids2track_APT
 
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 expIDdir = fullfile(fileDir,'Data_pez3000_analyzed');
@@ -35,7 +32,7 @@ for i = 1:length(expIDlist)
     end
     
     try
-        load(fullfile(fileDir,'Pez3000_Gui_folder\Gui_saved_variables\APT2Track.mat'))
+        load(fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables','APT2Track.mat'))
     catch
         movies2track = table;
     end
@@ -132,7 +129,7 @@ for i = 1:length(expIDlist)
     % [~,ia,~] = unique(movies2track.movielist);
     % movies2track = movies2track(ia,:); %only include videos not already on list
     
-    save(fullfile(fileDir,'Pez3000_Gui_folder\Gui_saved_variables\APT2Track.mat'),'movies2track');
+    save(fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables','APT2Track.mat'),'movies2track');
     
     catch
         disp('Could not add experiment ID to APT list')
@@ -151,4 +148,4 @@ for i = 1:length(movielist)
 end
 
 movies2track(ind,:)=[]; %#ok<NASGU>
-save(fullfile(fileDir,'Pez3000_Gui_folder\Gui_saved_variables\APT2Track.mat'),'movies2track');
+save(fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables','APT2Track.mat'),'movies2track');

@@ -15,10 +15,7 @@ locator_data = [];
 
 %%%%% Loading templates
 speciesFolder = 'Drosophila_melanogaster';
-[~,localUserName] = dos('echo %USERNAME%');
-localUserName = localUserName(1:end-1);
-repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
@@ -84,7 +81,7 @@ assessTable = assessTable_import.(dataname{1});
 
 runRef = videoID(1:23);
 dateRef = runRef(end-7:end);
-vidPath = fullfile('Z:\hhmiData\dm11\cardlab\Data_pez3000',dateRef,runRef,[videoID '.mp4']);
+vidPath = fullfile('/Volumes/card-locker/hhmiData/dm11/cardlab/Data_pez3000',dateRef,runRef,[videoID '.mp4']);
 locator_data.orig_video_path{1} = vidPath;
 video_obj = VideoReader(vidPath);
 vidHeight = video_obj.Height;

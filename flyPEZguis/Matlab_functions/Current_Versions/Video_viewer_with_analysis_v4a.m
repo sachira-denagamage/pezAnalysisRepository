@@ -1,10 +1,10 @@
 function Video_viewer_with_analysis_v4a
 
 %%%%% computer and directory variables and information
-[~,localUserName] = dos('echo %USERNAME%');
+[~,localUserName] = system('echo "$USER"');
 localUserName = localUserName(1:end-1);
 repositoryName = 'pezAnalysisRepository';
-repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
+repositoryDir = fullfile('/Users',localUserName,'Desktop/Code',repositoryName);
 fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
 
 file_dir = fullfile(fileDir,'Pez3000_Gui_folder','Gui_saved_variables');
@@ -13,7 +13,7 @@ data_path = fullfile(fileDir,'Data_pez3000');
 
 repositoryDir = fileparts(fileparts(fileparts(mfilename('fullpath'))));
 
-addpath(genpath('C:\Users\Card Lab\Documents\pezAnalysisRepository\')) %added by SA 8-14-23
+addpath(genpath('/Users/sachira/Desktop/Code/pezAnalysisRepository')) %added by SA 8-14-23
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 saved_collections = load([file_dir filesep 'Saved_Collection.mat']);
 saved_collections = saved_collections.Saved_Collection;
@@ -38,13 +38,13 @@ temp_range = [22.0 24.0];
 skip_fail = 0;
 flag = 'None';
 
-[~,localUserName] = dos('echo %USERNAME%');
+[~,localUserName] = system('echo "$USER"');
 localUserName = localUserName(1:end-1);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%s%%%%%%%%%%%%%
 %% sets background
 guiPosFun = @(c,s) [c(1)-s(1)/2 c(2)-s(2)/2 s(1) s(2)];     %input center(x,y) and size(x,y)
 
-screen2use = 2;         % in multi screen setup, this determines which screen to be used
+screen2use = 1;         % in multi screen setup, this determines which screen to be used
 screen2cvr = 0.8;       % portion of the screen to cover
     
 monPos = get(0,'MonitorPositions');
@@ -465,7 +465,7 @@ setframeinput
         
                 
         set(hTlabels(5),'String','Select Video:');
-% keyboard
+ %keyboard
         filter_vid_list
     end
     function filter_vid_list(~,~)
@@ -481,6 +481,7 @@ setframeinput
 %             in_range_logic = [abs(temp_data.Complete_usuable_data.Total_Movement) <= 22.5;abs(temp_data.Videos_Need_To_Work.Total_Movement) <= 22.5];
 %             vid_list = vid_list(in_range_logic);
 %         else
+%           keyboard
             vid_list = temp_data.Complete_usuable_data.Properties.RowNames;
 %        end
         
