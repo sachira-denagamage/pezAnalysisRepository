@@ -29,7 +29,9 @@ if ~exist('debug','var')
 end
 %%%% Establish data destination directory
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
 expt_results_dir = fullfile(analysisDir,exptID);

@@ -5,7 +5,9 @@ function pez3000_rawDataPrep
 
 %%%%% computer and directory variables and information
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 parentDir = fullfile(fileDir,'Data_pez3000');
 housekeepingDir = fullfile(fileDir,'Pez3000_Gui_folder','defaults_and_housekeeping_variables');
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
@@ -68,7 +70,9 @@ end
 function makeDataVars(runName,datePath)
 %% %%% computer and directory variables and information
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
 failure_path = fullfile(analysisDir,'errorLogs','experimentRefErrors.txt');
@@ -673,6 +677,7 @@ save(manualAnnotationsPath,'manualAnnotations')
 save(autoAnnotationsPath,'automatedAnnotations')
 save(vidInfoMergedPath,'videoStatisticsMerged')
 save(exptInfoMergedPath,'experimentInfoMerged')
+fprintf(exptID)
 pez3000_statusAssessment_v2({exptID});
 
 end
@@ -750,7 +755,7 @@ else
     minPkHt = 0.25;
     pkThresh = 0.5;
     dataNorm(dataNorm > pkThresh) = pkThresh;
-    minPkDist = floor(stimDwellTime*1.5);
+    minPkDist = double(floor(stimDwellTime*1.5));
     [peakVals,peakPos] = findpeaks(dataNorm,'MINPEAKHEIGHT',minPkHt,'MINPEAKDISTANCE',minPkDist);
     visStimInfo.peakPos = peakPos;
     visStimInfo.peakVals = peakVals;
@@ -775,7 +780,9 @@ end
 
 function photoStimStruct = photoactivationAnalyzer(photoStimStruct,exptID)
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 savedPhotostimDir = fullfile(fileDir,'pez3000_variables','photoactivation_stimuli');
 

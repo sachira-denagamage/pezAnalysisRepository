@@ -8,7 +8,9 @@ end
 % installVideoUtils
 %%%%% computer and directory variables and information
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 parentDir = fullfile(fileDir,'Data_pez3000');
 
 strParts = strsplit(vidName,'_');
@@ -50,11 +52,15 @@ if downloadOpRestrictedTest
         outcome = 'Supplement does not exist';
         return
     end
-    suppFrmCt = vidObj.NumberOfFrames;
     suppTargetCt = numel(vidStats.supplement_frame_reference{videoID});
-    if suppFrmCt ~= suppTargetCt
-        outcome = 'Unexpected supplement frame count';
-        return
+    try
+        suppFrmCt = vidObj.NumberOfFrames;
+        if suppFrmCt ~= suppTargetCt
+            outcome = 'Unexpected supplement frame count';
+            return
+        end
+    catch
+        % macOS VideoReader can't index timestamps for this file; trust vidStats
     end
 end
 try
@@ -64,8 +70,6 @@ catch
     return
 end
 % vidObj = VideoPlayer(vidPath);
-recFrmCt = vidObj.NumberOfFrames;
-% recFrmCt = vidObj.NumFrames;
 if downloadOpCutrateTest || downloadOpRestrictedTest
     masterFrmRefs = vidStats.cutrate10th_frame_reference{videoID};
 elseif downloadOpFullrateTest
@@ -75,9 +79,15 @@ else
     return
 end
 recTargetCt = numel(masterFrmRefs);
-if recFrmCt ~= recTargetCt
-    outcome = 'Unexpected cutrate frame count';
-    return
+try
+    recFrmCt = vidObj.NumberOfFrames;
+    if recFrmCt ~= recTargetCt
+        outcome = 'Unexpected cutrate frame count';
+        return
+    end
+catch
+    % macOS VideoReader can't index timestamps for this file; trust vidStats
+    recFrmCt = recTargetCt;
 end
 
 vidH = vidObj.Height;

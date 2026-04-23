@@ -28,7 +28,9 @@ visualizer_name = 'trackingVisualizer3000_v14';
 
 %%%%% computer and directory variables and information
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 set(0,'showhiddenhandles','on')
 delete(get(0,'children'))

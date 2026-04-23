@@ -4,7 +4,9 @@ function vids2track_APT_v2
 localUserName = localUserName(1:end-1);
 repositoryName = 'pezAnalysisRepository';
 repositoryDir = fullfile('C:','Users',localUserName,'Documents',repositoryName);
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 expIDdir = fullfile(fileDir,'Data_pez3000_analyzed');
 

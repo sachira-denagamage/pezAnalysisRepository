@@ -2,7 +2,9 @@ function pez3000_posthoc_corrections
 
 %%%%% computer and directory variables and information
 repositoryDir = '/Users/sachira/Desktop/Code/pezAnalysisRepository';
-fileDir = fscanf(fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt')),'%s');
+fid = fopen(fullfile(repositoryDir,'flyPEZanalysis','pezFilePath.txt'));
+fileDir = fscanf(fid,'%s');
+fclose(fid);
 
 analysisDir = fullfile(fileDir,'Data_pez3000_analyzed');
 ignorePath = fullfile(analysisDir,'ignoreLists','runs2ignoreList.txt');
